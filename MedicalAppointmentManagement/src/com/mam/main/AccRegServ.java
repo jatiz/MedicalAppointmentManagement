@@ -38,7 +38,6 @@ public class AccRegServ extends HttpServlet {
 			if (accCreateserv.accountCreate("Hanafi", "Yakub", "napi1@mail.com", "passwd")) {
 				// System.out.println("Account Successfully Created");
 				response.getWriter().println("Account Successfully Created");
-				response.getWriter().println("Job well done.");
 			} else {
 				// System.out.println("Validation Failed!");
 				response.getWriter().println("Validation Failed!");
