@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mam.customexception.mamException;
+import com.mam.customexception.mamThrowableException;
 import com.mam.services.accountCreationServices;
 
 /**
@@ -44,7 +45,10 @@ public class AccRegServ extends HttpServlet {
 			}
 		} catch (mamException e) {
 			// TODO Auto-generated catch block
-			response.getWriter().println(e.getMessage() + " " + e.getCause());
+			response.getWriter().println(e.getMessage());
+		} catch (mamThrowableException e) {
+			// TODO Auto-generated catch block
+			response.getWriter().println(e.getMessage() + ": " + e.getCause());
 		}
 
 	}

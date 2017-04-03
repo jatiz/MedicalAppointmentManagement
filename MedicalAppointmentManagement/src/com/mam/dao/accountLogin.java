@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import com.mam.bean.accountObj;
 import com.mam.customexception.mamException;
+import com.mam.customexception.mamThrowableException;
 
 public class accountLogin {
 
@@ -14,7 +15,7 @@ public class accountLogin {
 	PreparedStatement ps;
 	ResultSet rs;
 	
-	public boolean getLogin(accountObj accObj) throws mamException{
+	public boolean getLogin(accountObj accObj) throws mamException, mamThrowableException{
 				try {
 					dbConn.getConnect();
 					ps = dbConn.requestConnect().prepareStatement(query);
@@ -30,7 +31,7 @@ public class accountLogin {
 					throw e;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					throw new mamException("Exception ERROR at AccountLogin:", e);
+					throw new mamThrowableException("Exception ERROR at AccountLogin:", e);
 				}
 				
 			

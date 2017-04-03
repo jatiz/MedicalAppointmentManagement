@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mam.customexception.mamException;
+import com.mam.customexception.mamThrowableException;
 import com.mam.services.accountLoginServices;
 
 /**
@@ -54,6 +55,9 @@ public class LoginServ extends HttpServlet {
 			} catch (mamException e) {
 				// TODO Auto-generated catch block
 				out.println(e.getMessage());
+			} catch (mamThrowableException e) {
+				// TODO Auto-generated catch block
+				out.println(e.getMessage() + ": " + e.getCause());
 			}
 	}
 

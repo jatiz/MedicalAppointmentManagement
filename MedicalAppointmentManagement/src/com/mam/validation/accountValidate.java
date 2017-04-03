@@ -1,6 +1,6 @@
 package com.mam.validation;
 
-import java.util.Random;
+
 
 import com.mam.bean.accountObj;
 import com.mam.customexception.mamException;
@@ -78,10 +78,6 @@ public class accountValidate {
 		return hashedPassword;
 	}
 
-	public int randomizeAccID() {
-		Random rnd = new Random();
-		int newAccID = rnd.nextInt(1000000 - 100000) + 100000;
-		return newAccID;
-	}
+	
 
 }

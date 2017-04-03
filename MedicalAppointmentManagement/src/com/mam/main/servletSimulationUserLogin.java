@@ -3,6 +3,7 @@ package com.mam.main;
 import java.util.Scanner;
 
 import com.mam.customexception.mamException;
+import com.mam.customexception.mamThrowableException;
 import com.mam.services.accountLoginServices;
 
 /*
@@ -34,6 +35,9 @@ public class servletSimulationUserLogin {	//Represent a servlet #act as the fron
 				// TODO Auto-generated catch block
 				System.out.println("Custom Exception:- \n");
 				System.out.println(e);
+			} catch (mamThrowableException e) {
+				// TODO Auto-generated catch block
+				System.out.println("mamThrowableException:" + e.getCause());
 			}
 		
 	}

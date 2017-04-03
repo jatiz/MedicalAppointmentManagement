@@ -2,6 +2,7 @@ package com.mam.main;
 
 
 import com.mam.customexception.mamException;
+import com.mam.customexception.mamThrowableException;
 import com.mam.services.accountCreationServices;
 
 /*
@@ -22,6 +23,9 @@ public class servletSimulationAccountCreation{
 			} catch (mamException e) {
 				// TODO Auto-generated catch block
 				System.out.println(e);
+			} catch (mamThrowableException e) {
+				// TODO Auto-generated catch block
+				System.out.println("mamThrowableException:" + e.getCause());
 			}
 		
 	}

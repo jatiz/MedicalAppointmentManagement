@@ -11,8 +11,4 @@ public class mamException extends Exception {
 		super(message);
 	}
 
-	public mamException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
 }
