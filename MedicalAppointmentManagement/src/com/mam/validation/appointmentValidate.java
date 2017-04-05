@@ -6,7 +6,8 @@ import com.mam.customexception.mamException;
 public class appointmentValidate {
 
 	private appointmentObj newAppt;
-	private String alphaPattern = "[a-zA-Z]+";
+	private String alphaPattern = "[a-zA-Z ]*$";
+	//private String alphaPattern = "[a-zA-Z]+";
 	
 	public boolean validateName(appointmentObj apptObj) throws mamException {
 		newAppt = apptObj;

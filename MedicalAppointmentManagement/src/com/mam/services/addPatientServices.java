@@ -5,7 +5,7 @@ import com.mam.customexception.mamException;
 import com.mam.customexception.mamThrowableException;
 import com.mam.dao.databaseValidation;
 import com.mam.dao.insertPatient;
-import com.mam.dao.retrieveUserID;
+import com.mam.dao.retrieveID;
 import com.mam.keygenerator.keyGenerator;
 import com.mam.validation.patientValidate;
 
@@ -17,7 +17,7 @@ public class addPatientServices {
 	
 	private databaseValidation dbValidate = new databaseValidation();
 	private insertPatient insertPatient = new insertPatient();
-	private retrieveUserID requestCareGiver = new retrieveUserID();
+	private retrieveID requestCareGiver = new retrieveID();
 
 	public boolean createPatient(String email,String firstName, String lastName, String date, String month, String year) throws mamException, mamThrowableException {
 		patient.setFirstName(firstName);
@@ -27,7 +27,7 @@ public class addPatientServices {
 
 		if(patientValidate.validateAll(patient)){
 			if(!dbValidate.checkPatientAccount(patient)){
-				patient.setCareGiver(requestCareGiver.retrieveID(email));
+				patient.setCareGiver(requestCareGiver.retrieveUserID(email));
 				insertPatient.addPatient(patient);
 				return true;
 			}else{

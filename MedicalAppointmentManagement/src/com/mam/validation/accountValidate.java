@@ -9,7 +9,8 @@ import com.mam.encryption.md5encryption;
 public class accountValidate {
 
 	private accountObj newAccObj;
-	private String alphaPattern = "[a-zA-Z]+";
+	private String alphaPattern = "[a-zA-Z ]*$";
+	//private String alphaPattern = "[a-zA-Z]+";
 
 	public boolean validateAll(accountObj accObj) throws mamException { // Check all Validations
 		newAccObj = accObj;

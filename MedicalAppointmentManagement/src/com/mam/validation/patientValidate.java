@@ -10,7 +10,8 @@ import com.mam.customexception.mamThrowableException;
 public class patientValidate {
 
 	private patientObj newPatient;
-	private String alphaPattern = "[a-zA-Z]+";
+	private String alphaPattern = "[a-zA-Z ]*$";
+	//private String alphaPattern = "[a-zA-Z]+";
 
 	public boolean validateAll(patientObj patient) throws mamException, mamThrowableException {
 		newPatient = patient;

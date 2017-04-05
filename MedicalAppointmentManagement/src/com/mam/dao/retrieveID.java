@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import com.mam.customexception.mamException;
 import com.mam.customexception.mamThrowableException;
 
-public class retrieveUserID {
+public class retrieveID {
 
 	private dbConnect dbConn = new dbConnect();
 	private String sql;
 	PreparedStatement ps;
 	ResultSet rs;
 	
-	public String retrieveID(String email) throws mamException, mamThrowableException{
+	public String retrieveUserID(String email) throws mamException, mamThrowableException{
 		String AccID = "null";
 		sql = "select accID from account where email=?";
 		try {
@@ -53,10 +53,34 @@ public class retrieveUserID {
 			throw e;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			throw new mamThrowableException("SQL ERROR in retrieving AccID", e);
+			throw new mamThrowableException("SQL ERROR in retrieving patient ID", e);
 		}
 		
 		return patientID;
+		
+	}
+	
+	public String retriveAppointmentID(String name) throws mamException, mamThrowableException{
+		String apptID = "null";
+		sql = "select appointmentID from appointment where appointmentName=?";
+		try {
+			dbConn.getConnect();
+			ps = dbConn.requestConnect().prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				apptID = Integer.toString(rs.getInt("appointmentID"));
+			}
+			
+		} catch (mamException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new mamThrowableException("SQL ERROR in retrieving appointment ID", e);
+		}
+		
+		return apptID;
 		
 	}
 }

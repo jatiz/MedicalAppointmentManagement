@@ -5,7 +5,7 @@ import com.mam.customexception.mamException;
 import com.mam.customexception.mamThrowableException;
 import com.mam.dao.appointmentCreation;
 import com.mam.dao.databaseValidation;
-import com.mam.dao.retrieveUserID;
+import com.mam.dao.retrieveID;
 import com.mam.keygenerator.keyGenerator;
 import com.mam.validation.appointmentValidate;
 import com.mam.validation.dateTimeValidate;
@@ -14,7 +14,7 @@ public class appointmentCreationServices {
 
 	private appointmentObj apptObj = new appointmentObj();
 	private keyGenerator generateID = new keyGenerator();
-	private retrieveUserID requestPatientID = new retrieveUserID();
+	private retrieveID requestPatientID = new retrieveID();
 	private dateTimeValidate dtValidate = new dateTimeValidate();
 	private appointmentValidate apptValidate = new appointmentValidate();
 	private databaseValidation dbValidate = new databaseValidation();

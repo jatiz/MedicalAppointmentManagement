@@ -32,7 +32,7 @@ public class dateTimeValidate {
 		return matcher.matches();
 	}
 	
-	public String convertTimeFormat(String time) throws mamThrowableException{
+	public String convertTimeFormat(String time) throws mamThrowableException{	//Convert to 24 Hours
 		String formattedTime = "null";
 		SimpleDateFormat displayFormat = new SimpleDateFormat("HH:mm");
 	    SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mm a");
