@@ -44,6 +44,7 @@ public class DashboardServ extends HttpServlet {
         try {
 			if(patientServices.createPatient(n, "Jatiz", "So", "7", "10", "20070")){		//used for adding new patient
 				out.println("Patient Account Successfully Created");
+				out.println("test Commit");
 			}else{
 				out.println("Patient Account unable to create");
 			}
