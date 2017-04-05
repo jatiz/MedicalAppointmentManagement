@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mam.bean.appointmentObj;
+import com.mam.bean.auditorObj;
 import com.mam.bean.medicineObj;
 import com.mam.bean.patientObj;
 import com.mam.customexception.mamException;
@@ -112,6 +113,52 @@ public class databaseValidation {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			throw new mamThrowableException("SQL ERROR for checking medicine in database", e);
+		}
+		
+		return false;
+	}
+	
+	public boolean checkAuditorGrpName(auditorObj auditObj) throws mamException, mamThrowableException{
+		query = "select auditorGrpName from auditor where accID=? and patientID=?";
+		
+		try {
+			dbConn.getConnect();
+			ps = dbConn.requestConnect().prepareStatement(query);
+			ps.setString(1, auditObj.getAccID());
+			ps.setString(2, auditObj.getPatientID());
+			rs = ps.executeQuery();
+			while(rs.next()){
+				return true;
+			}
+		} catch (mamException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new mamThrowableException("SQL ERROR for checking auditorGrpName in database", e);
+		}
+		
+		return false;
+	}
+	
+	public boolean checkPatientLinkToUser(String patientName, String careGiver) throws mamException, mamThrowableException{
+		query = "select patientID from patient where firstName=? and careGiver=?";
+		
+		try {
+			dbConn.getConnect();
+			ps = dbConn.requestConnect().prepareStatement(query);
+			ps.setString(1, patientName);
+			ps.setString(2, careGiver);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				return true;
+			}
+		} catch (mamException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new mamThrowableException("SQL ERROR for checking patient link in database", e);
 		}
 		
 		return false;
