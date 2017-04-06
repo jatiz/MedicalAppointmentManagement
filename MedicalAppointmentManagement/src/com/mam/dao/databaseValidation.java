@@ -163,4 +163,52 @@ public class databaseValidation {
 		
 		return false;
 	}
+	//----------------------------------------------------------------------------------------------------------- need to reconstruct
+	public String getAuditID(auditorObj auditObj, String email) throws mamException, mamThrowableException{
+		query = "select auditID from auditor where accID=? and patientID=?";
+		String ID="null";
+		retrieveID retrieveID = new retrieveID();
+		try {
+			dbConn.getConnect();
+			ps = dbConn.requestConnect().prepareStatement(query);
+			ps.setString(1, retrieveID.retrieveUserID(email));
+			ps.setString(2, auditObj.getPatientID());
+			rs = ps.executeQuery();
+			while(rs.next()){
+				ID = Integer.toString(rs.getInt("auditID"));
+			}
+		} catch (mamException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new mamThrowableException("SQL ERROR for checking auditorGrpName in database", e);
+		}
+		
+		return ID;
+	}
+	
+	public boolean checkAddedUser(auditorObj auditObj) throws mamException, mamThrowableException{
+		query = "select auditID from auditor where auditID=? and accID=? and patientID=?";
+		
+		try {
+			dbConn.getConnect();
+			ps = dbConn.requestConnect().prepareStatement(query);
+			ps.setString(1, auditObj.getAuditID());
+			ps.setString(2, auditObj.getAccID());
+			ps.setString(3, auditObj.getPatientID());
+			rs = ps.executeQuery();
+			while(rs.next()){
+				return true;
+			}
+		} catch (mamException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new mamThrowableException("SQL ERROR for checking patient link in database", e);
+		}
+		
+		return false;
+	}
 }

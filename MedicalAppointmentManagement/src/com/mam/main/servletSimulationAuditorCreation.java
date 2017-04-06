@@ -10,7 +10,9 @@ public class servletSimulationAuditorCreation {
 		auditorCreationServices auditCreateServices = new auditorCreationServices();
 		
 		try {
-			if(auditCreateServices.createAuditor("tester", "anonymousjatiz@gmail.com", "napi")){
+			//if(auditCreateServices.createAuditor("tester", "anonymousjatiz@gmail.com", "napi"))
+			if(auditCreateServices.addAuditor("anonymousjatiz@gmail.com", "napihup@gmail.com", "tester", "napi"))
+			{
 				System.out.println("Auditor Succcessfully created.");
 			}else{
 				System.out.println("Some errror while creating auditor information.");

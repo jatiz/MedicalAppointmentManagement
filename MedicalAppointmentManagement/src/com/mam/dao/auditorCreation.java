@@ -11,11 +11,12 @@ import com.mam.customexception.mamThrowableException;
 public class auditorCreation {
 
 	private dbConnect dbConn = new dbConnect();
-	private String sql = "insert into auditor (auditID, auditorGrpName, accID, patientID) VALUES (?,?,?,?)";
+	private String sql;
 	PreparedStatement ps;
 	ResultSet rs;
 
 	public void auditCreate(auditorObj auditObj) throws mamException, mamThrowableException{
+		sql = "insert into auditor (auditID, auditorGrpName, accID, patientID, groupAdmin) VALUES (?,?,?,?,?)";
 		try {
 			dbConn.getConnect(); // Create connection to database
 			ps = dbConn.requestConnect().prepareStatement(sql);
@@ -23,6 +24,7 @@ public class auditorCreation {
 			ps.setString(2, auditObj.getAuditorGrpName());
 			ps.setString(3, auditObj.getAccID());
 			ps.setString(4, auditObj.getPatientID());
+			ps.setString(5, auditObj.getGroupAdmin());
 			int query = ps.executeUpdate();
 			if (query > 0) {
 				// System.out.println("Account Successfully Created");
@@ -36,6 +38,31 @@ public class auditorCreation {
 		} catch (Exception e) {
 			// System.out.println("'accountCreation EXCEPTION ERROR: " + e);
 			throw new mamThrowableException("'auditCreate EXCEPTION ERROR: ", e);
+		}
+	}
+	
+	public void auditAdd(auditorObj auditObj) throws mamException, mamThrowableException{
+		sql = "insert into auditor (auditID, auditorGrpName, accID, patientID) VALUES (?,?,?,?)";
+		try {
+			dbConn.getConnect(); // Create connection to database
+			ps = dbConn.requestConnect().prepareStatement(sql);
+			ps.setString(1, auditObj.getAuditID());
+			ps.setString(2, auditObj.getAuditorGrpName());
+			ps.setString(3, auditObj.getAccID());
+			ps.setString(4, auditObj.getPatientID());
+			int query = ps.executeUpdate();
+			if (query > 0) {
+				// System.out.println("Account Successfully Created");
+			} else {
+				System.out.println("Error under auditAdd query prep statement");
+			}
+			dbConn.requestConnect().close();
+		} catch (SQLException e) {
+			// System.out.println("'accountCreation SQLEXCEPTION ERROR: " + e);
+			throw new mamThrowableException("'auditAdd SQLEXCEPTION ERROR: ", e);
+		} catch (Exception e) {
+			// System.out.println("'accountCreation EXCEPTION ERROR: " + e);
+			throw new mamThrowableException("'auditAdd EXCEPTION ERROR: ", e);
 		}
 	}
 }

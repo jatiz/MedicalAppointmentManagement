@@ -24,6 +24,7 @@ public class auditorCreationServices {
 		auditObj.setAccID(requestID.retrieveUserID(email));
 		if(dbValid.checkPatientLinkToUser(patientName, auditObj.getAccID())){
 			auditObj.setPatientID(requestID.retrivePatientID(patientName));
+			auditObj.setGroupAdmin("YES");
 		}else{
 			throw new mamException("No patient associated with this user");
 		}
@@ -35,6 +36,24 @@ public class auditorCreationServices {
 				return true;
 			}
 		}
+		
+		return false;
+	}
+	
+	public boolean addAuditor(String adminEmail, String email, String auditorGrpName, String patientName) throws mamException, mamThrowableException{
+		auditObj.setAccID(requestID.retrieveUserID(email));
+		auditObj.setAuditorGrpName(auditorGrpName);
+		auditObj.setPatientID(requestID.retrivePatientID(patientName));
+		auditObj.setAuditID(dbValid.getAuditID(auditObj, adminEmail));
+		
+		if(auditValid.validateGrpName(auditObj)){
+			if(!dbValid.checkAddedUser(auditObj)){
+				auditCreate.auditAdd(auditObj);
+				return true;
+			}
+			
+		}
+		
 		
 		return false;
 	}
