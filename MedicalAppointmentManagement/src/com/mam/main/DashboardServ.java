@@ -40,6 +40,7 @@ public class DashboardServ extends HttpServlet {
         String n=(String)session.getAttribute("uname");  
         out.print("<p>Hello "+n+"</p>");
         
+        //Simple apache servlet
         addPatientServices patientServices = new addPatientServices();
         try {
 			if(patientServices.createPatient(n, "Jatiz", "So", "7", "10", "20070")){		//used for adding new patient
